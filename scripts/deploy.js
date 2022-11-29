@@ -7,7 +7,14 @@
 const hre = require("hardhat");
 
 async function main() {
-  
+  let FunCoin = await ethers.getContractFactory("FunCoin");
+  let funCoin = await FunCoin.deploy();
+
+  let Bridge = await ethers.getContractFactory("Bridge");
+  let bridge = await Bridge.deploy(funCoin.address);
+
+  console.log("funCoin address: ", funCoin.address);
+  console.log("bridge address: ", bridge.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
